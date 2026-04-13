@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearly Functional — Home Organization & Staging</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FEFCFA;
+    --sand: #E8DDD0;
+    --clay: #C4A882;
+    --terra: #9C7A54;
+    --bark: #5C4430;
+    --ink: #2A1F14;
+    --sage: #8A9E85;
+    --sage-light: #D4DECE;
+    --gold: #B89A5E;
+    --text-main: #2A1F14;
+    --text-muted: #7A6A58;
+    --text-light: #A89880;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(254, 252, 250, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(92,68,48,0.1);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--bark);
+    text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; color: var(--terra); }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--bark); }
+  .nav-cta {
+    background: var(--bark) !important;
+    color: var(--cream) !important;
+    padding: 0.6rem 1.5rem !important;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--terra) !important; color: var(--warm-white) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 6rem 6rem;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--sand) 30%, var(--clay) 60%, transparent);
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--terra);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 420px;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--bark);
+    color: var(--cream);
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--terra); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--bark);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s;
+  }
+  .btn-ghost:hover { gap: 0.8rem; }
+  .btn-ghost::after { content: '→'; }
+
+  .hero-badge {
+    margin-top: 3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--sand);
+    border-left: 3px solid var(--gold);
+    font-size: 0.8rem;
+    color: var(--bark);
+    font-weight: 400;
+  }
+  .hero-badge strong { font-weight: 500; }
+
+  .hero-right {
+    background: var(--sand);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right-inner {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(196,168,130,0.3) 0%, transparent 60%),
+      linear-gradient(to bottom, transparent 60%, rgba(42,31,20,0.2));
+  }
+  .hero-grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: sepia(15%) saturate(80%);
+  }
+  /* CSS art for hero image since we don't have real images */
+  .hero-visual {
+    width: 100%;
+    height: 100%;
+    background:
+      linear-gradient(160deg, #E8DDD0 0%, #D4C5B0 40%, #C4A882 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .hero-visual-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem;
+  }
+  .shelf-illustration {
+    width: 260px;
+    opacity: 0.7;
+  }
+  .hero-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bark);
+    text-align: center;
+    line-height: 1.6;
+    max-width: 320px;
+    opacity: 0.85;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider-strip {
+    background: var(--bark);
+    padding: 1.2rem 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .divider-strip .strip-item {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .strip-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION GENERIC ─── */
+  section { padding: 7rem 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--terra); }
+  .section-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-muted);
+    max-width: 540px;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--cream); }
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--sand);
+  }
+  .service-card {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid var(--sand);
+    position: relative;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card:last-child { border-right: none; }
+  .service-card:hover { background: var(--warm-white); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-num { color: var(--clay); }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--bark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .service-desc {
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+  .service-list li {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+  .service-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--clay);
+  }
+  .service-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s;
+  }
+  .service-link:hover { gap: 0.8rem; }
+  .service-link::after { content: '→'; }
+
+  /* ─── ABOUT SPLIT ─── */
+  #about {
+    background: var(--warm-white);
+    padding: 0;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+  .about-visual {
+    background: linear-gradient(135deg, #D4C5B0, #C4A882 50%, #9C7A54);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    inset: 2rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    pointer-events: none;
+  }
+  .about-visual-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    line-height: 1;
+    user-select: none;
+  }
+  .about-content {
+    padding: 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .about-content .section-body { margin-bottom: 2rem; }
+  .about-stat-row {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--sand);
+  }
+  .about-stat { display: flex; flex-direction: column; gap: 0.3rem; }
+  .about-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--terra);
+    line-height: 1;
+  }
+  .about-stat-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* ─── PROCESS ─── */
+  #process { background: var(--ink); }
+  #process .section-label { color: var(--clay); }
+  #process .section-title { color: var(--cream); }
+  #process .section-title em { color: var(--gold); }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+  }
+  .process-step {
+    padding: 3rem 2rem;
+    border-right: 1px solid rgba(196,168,130,0.15);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+  .process-step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .process-step-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(232,221,208,0.6);
+  }
+  .process-connector {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+    transform: translateX(50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+    z-index: 2;
+  }
+  .process-step:last-child .process-connector { display: none; }
+
+  /* ─── REVIEWS ─── */
+  #reviews { background: var(--cream); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+  .review-card {
+    padding: 2.5rem;
+    background: var(--warm-white);
+    border: 1px solid var(--sand);
+    position: relative;
+  }
+  .review-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--clay);
+    line-height: 0.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+  }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+  .review-author {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+  }
+  .review-stars {
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  /* ─── DISCOUNT BANNER ─── */
+  .discount-section {
+    background: var(--sage);
+    padding: 4rem 0;
+  }
+  .discount-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .discount-text { flex: 1; }
+  .discount-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 0.75rem;
+    opacity: 0.8;
+  }
+  .discount-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .discount-title em { font-style: italic; }
+  .discount-tags {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .discount-tag {
+    background: rgba(255,255,255,0.3);
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bark);
+    border: 1px solid rgba(92,68,48,0.2);
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--warm-white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+  .contact-item { display: flex; flex-direction: column; gap: 0.3rem; }
+  .contact-item-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .contact-item-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--bark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item-value:hover { color: var(--terra); }
+  .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .form-input, .form-textarea {
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    padding: 0.9rem 1.1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    appearance: none;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--clay);
+  }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    background: var(--bark);
+    color: var(--cream);
+    border: none;
+    padding: 1.1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--terra); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 4rem 0 2rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .footer-brand span { font-style: italic; color: var(--clay); }
+  .footer-tagline {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(232,221,208,0.5);
+    max-width: 280px;
+  }
+  .footer-col-title {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1.5rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-links a {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: rgba(232,221,208,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(196,168,130,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(232,221,208,0.4);
+  }
+  .footer-wa {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--clay);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .footer-wa:hover { color: var(--cream); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+  .delay-5 { animation-delay: 0.7s; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 1.5rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 8rem 2.5rem 4rem; }
+    .hero-right { min-height: 400px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none; border-bottom: 1px solid var(--sand); }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-visual { min-height: 300px; }
+    .about-content { padding: 4rem 2.5rem; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .container { padding: 0 2rem; }
+    .divider-strip { padding: 1.2rem 2rem; }
+    nav .nav-links { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .about-stat-row { flex-direction: column; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Clearly <span>Functional</span></a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact" class="nav-cta">Book a Consult</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-up">San Antonio, TX</p>
+    <h1 class="hero-title fade-up delay-1">
+      Your space,<br>
+      <em>finally at rest.</em>
+    </h1>
+    <p class="hero-sub fade-up delay-2">
+      Professional home organization, make-ready staging, and Airbnb setup services designed to bring calm, clarity, and intention to every room.
+    </p>
+    <div class="hero-actions fade-up delay-3">
+      <a href="#contact" class="btn-primary">Book a Free Consult</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+    <div class="hero-badge fade-up delay-4">
+      <strong>Special discounts</strong> for Military · First Responders · Teachers · Seniors
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-visual-overlay">
+        <!-- SVG shelf illustration -->
+        <svg class="shelf-illustration" viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Shelves -->
+          <rect x="20" y="80" width="220" height="4" rx="2" fill="rgba(92,68,48,0.4)"/>
+          <rect x="20" y="150" width="220" height="4" rx="2" fill="rgba(92,68,48,0.4)"/>
+          <!-- Books on shelf 1 -->
+          <rect x="35" y="50" width="14" height="30" rx="1" fill="rgba(156,122,84,0.7)"/>
+          <rect x="52" y="45" width="11" height="35" rx="1" fill="rgba(184,154,94,0.6)"/>
+          <rect x="66" y="52" width="13" height="28" rx="1" fill="rgba(92,68,48,0.5)"/>
+          <rect x="82" y="48" width="10" height="32" rx="1" fill="rgba(196,168,130,0.7)"/>
+          <!-- Plant on shelf 1 -->
+          <rect x="160" y="63" width="16" height="17" rx="2" fill="rgba(138,158,133,0.5)"/>
+          <ellipse cx="168" cy="60" rx="14" ry="12" fill="rgba(138,158,133,0.6)"/>
+          <ellipse cx="160" cy="56" rx="8" ry="7" fill="rgba(138,158,133,0.5)"/>
+          <!-- Candle on shelf 1 -->
+          <rect x="195" y="60" width="12" height="20" rx="1" fill="rgba(232,221,208,0.6)"/>
+          <line x1="201" y1="60" x2="201" y2="54" stroke="rgba(184,154,94,0.8)" stroke-width="1.5"/>
+          <!-- Books on shelf 2 -->
+          <rect x="35" y="118" width="12" height="32" rx="1" fill="rgba(196,168,130,0.6)"/>
+          <rect x="50" y="122" width="14" height="28" rx="1" fill="rgba(92,68,48,0.4)"/>
+          <rect x="67" y="120" width="10" height="30" rx="1" fill="rgba(156,122,84,0.6)"/>
+          <!-- Basket on shelf 2 -->
+          <rect x="110" y="128" width="40" height="22" rx="4" fill="rgba(184,154,94,0.5)"/>
+          <line x1="110" y1="136" x2="150" y2="136" stroke="rgba(92,68,48,0.3)" stroke-width="1"/>
+          <line x1="110" y1="142" x2="150" y2="142" stroke="rgba(92,68,48,0.3)" stroke-width="1"/>
+          <!-- Picture frame -->
+          <rect x="190" y="112" width="36" height="28" rx="2" fill="rgba(232,221,208,0.5)" stroke="rgba(92,68,48,0.3)" stroke-width="1.5"/>
+          <rect x="196" y="118" width="24" height="16" rx="1" fill="rgba(196,168,130,0.3)"/>
+        </svg>
+        <p class="hero-quote">"A well-ordered home is the foundation of a well-ordered life."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="divider-strip">
+  <div class="strip-item"><span class="strip-dot"></span>Home Make-Ready</div>
+  <div class="strip-item"><span class="strip-dot"></span>Declutter & Organize</div>
+  <div class="strip-item"><span class="strip-dot"></span>Airbnb Setup</div>
+  <div class="strip-item"><span class="strip-dot"></span>Furniture Assembly</div>
+  <div class="strip-item"><span class="strip-dot"></span>Space Optimization</div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <p class="section-label reveal">What We Do</p>
+        <h2 class="section-title reveal reveal-delay-1">Every space has <em>a story</em><br>worth telling well.</h2>
+      </div>
+      <p class="section-body reveal reveal-delay-2">We meet your home where it is and help you get it to where it should be — organized, beautiful, and completely functional.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3 class="service-name">Home Make-Ready</h3>
+        <p class="service-desc">Prepare your home for sale, move-in, or simply a fresh start. We handle the logistics so you don't have to.</p>
+        <ul class="service-list">
+          <li>Move-out preparation & deep declutter</li>
+          <li>Move-in setup & unpacking</li>
+          <li>Furniture assembly & installation</li>
+          <li>Full staging consultation</li>
+        </ul>
+        <a href="#contact" class="service-link">Get Started</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3 class="service-name">Declutter & Organize</h3>
+        <p class="service-desc">Transform overwhelmed spaces into calm, intuitive rooms where everything has a place — and stays there.</p>
+        <ul class="service-list">
+          <li>Whole-room or targeted decluttering</li>
+          <li>Category-based sorting systems</li>
+          <li>Donation & disposal coordination</li>
+          <li>Ongoing maintenance plans available</li>
+        </ul>
+        <a href="#contact" class="service-link">Learn More</a>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3 class="service-name">Airbnb Setup</h3>
+        <p class="service-desc">Turn a blank property into a guest-ready retreat. We handle everything from floor plan to final touch.</p>
+        <ul class="service-list">
+          <li>Floor plan design & space optimization</li>
+          <li>Product research & sourcing</li>
+          <li>Furniture shopping, delivery & assembly</li>
+          <li>Guest experience staging</li>
+        </ul>
+        <a href="#contact" class="service-link">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-visual-text">Clearly<br>Functional</div>
+    </div>
+    <div class="about-content">
+      <p class="section-label reveal">About</p>
+      <h2 class="section-title reveal reveal-delay-1">Built on the belief that <em>space matters.</em></h2>
+      <p class="section-body reveal reveal-delay-2">
+        Clearly Functional was born from a simple idea: the way your home feels changes how you live. We're a San Antonio-based team of home organization specialists who believe that every client deserves a space that works beautifully for their life.
+      </p>
+      <p class="section-body reveal reveal-delay-3" style="margin-top: 1rem;">
+        Whether you're moving, downsizing, hosting guests, or simply ready for a change — we bring structure, intention, and warmth to every project we touch.
+      </p>
+      <div class="about-stat-row reveal reveal-delay-2">
+        <div class="about-stat">
+          <span class="about-stat-num">200+</span>
+          <span class="about-stat-label">Spaces Transformed</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-num">5★</span>
+          <span class="about-stat-label">Average Rating</span>
+        </div>
+        <div class="about-stat">
+          <span class="about-stat-num">SA</span>
+          <span class="about-stat-label">Locally Rooted</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Simple. <em>Intentional.</em> Yours.</h2>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-step-num">Step 01</div>
+        <h3 class="process-step-title">Free Consultation</h3>
+        <p class="process-step-desc">We start with a conversation — your goals, your timeline, your space. No pressure, just clarity.</p>
+        <div class="process-connector"></div>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-step-num">Step 02</div>
+        <h3 class="process-step-title">Custom Plan</h3>
+        <p class="process-step-desc">We create a tailored plan based on your specific needs, budget, and vision for the space.</p>
+        <div class="process-connector"></div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-step-num">Step 03</div>
+        <h3 class="process-step-title">We Get to Work</h3>
+        <p class="process-step-desc">Our team handles everything with care, precision, and respect for your home and belongings.</p>
+        <div class="process-connector"></div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-step-num">Step 04</div>
+        <h3 class="process-step-title">You Come Home</h3>
+        <p class="process-step-desc">Walk into a space that finally feels right — organized, beautiful, and completely yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <p class="section-label reveal">Client Love</p>
+    <h2 class="section-title reveal reveal-delay-1">What San Antonio is <em>saying.</em></h2>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★ ★ ★ ★ ★</div>
+        <div class="review-mark">"</div>
+        <p class="review-text">She transformed my spare bedroom from a storage nightmare into a beautiful guest room in just one afternoon. I couldn't believe the difference.</p>
+        <p class="review-author">— Maria T., San Antonio</p>
+      </div>
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">★ ★ ★ ★ ★</div>
+        <div class="review-mark">"</div>
+        <p class="review-text">Professional, warm, and incredibly efficient. My Airbnb went from empty to fully staged and guest-ready in two days. Bookings doubled the next month.</p>
+        <p class="review-author">— James R., Alamo Heights</p>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">★ ★ ★ ★ ★</div>
+        <div class="review-mark">"</div>
+        <p class="review-text">As a military family who moves often, having someone handle our make-ready was a lifesaver. She knew exactly what needed to be done and did it beautifully.</p>
+        <p class="review-author">— Sgt. Linda M., JBSA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOUNT BANNER -->
+<div class="discount-section">
+  <div class="container">
+    <div class="discount-inner">
+      <div class="discount-text reveal">
+        <p class="discount-label">A Thank You From Us</p>
+        <h2 class="discount-title">Special discounts for those <em>who give so much.</em></h2>
+        <div class="discount-tags">
+          <span class="discount-tag">Military</span>
+          <span class="discount-tag">First Responders</span>
+          <span class="discount-tag">Teachers</span>
+          <span class="discount-tag">Seniors</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <a href="#contact" class="btn-primary">Ask About Discounts</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label reveal">Let's Connect</p>
+        <h2 class="section-title reveal reveal-delay-1">Ready to <em>reclaim<br>your space?</em></h2>
+        <p class="section-body reveal reveal-delay-2" style="margin-bottom: 3rem;">
+          Reach out for a free consultation. We'll talk through your space, your goals, and the best path forward — no commitment required.
+        </p>
+        <div class="contact-info reveal reveal-delay-3">
+          <div class="contact-item">
+            <span class="contact-item-label">Phone</span>
+            <a href="tel:12108689364" class="contact-item-value">+1 (210) 868-9364</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Email</span>
+            <a href="mailto:clearlyfunctional@gmail.com" class="contact-item-value">clearlyfunctional@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">WhatsApp</span>
+            <a href="https://wa.me/19567774309" class="contact-item-value">Message us directly →</a>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-input" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-input" placeholder="(210) 000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tell us about your space</label>
+            <textarea class="form-textarea" placeholder="What are you hoping to accomplish?"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Clearly <span>Functional</span></div>
+        <p class="footer-tagline">Professional home organization and staging services rooted in San Antonio, TX. Every space deserves to feel like home.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Services</p>
+        <ul class="footer-links">
+          <li><a href="#services">Home Make-Ready</a></li>
+          <li><a href="#services">Declutter & Organize</a></li>
+          <li><a href="#services">Airbnb Setup</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Company</p>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Clearly Functional · All Rights Reserved · San Antonio, TX</p>
+      <a href="https://wa.me/19567774309" class="footer-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.531 5.854L0 24l6.335-1.508A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.653-.518-5.168-1.418l-.371-.217-3.854.918.955-3.737-.241-.386A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#8A9E85';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
